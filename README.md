@@ -9,12 +9,10 @@ Appluck Android Unity 插件集成说明
 
 1. 下载Appluck UnityPlugin
 --------
-
  [AppLuck_UnityPlugin_v1.0.0][alup]
 
 2. 导入unitypackage
 --------
-
 1. 在unity中, 选择 Assets > Import Package > Custom Package…
 2. 选择下载的AppLuck_UnityPlugin_v1.0.0.unitypackage
 3. 点击导入按钮
