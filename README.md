@@ -5,7 +5,6 @@ Appluck Android Unity 插件集成说明
 
 使用要求
 --------
-
 * Unity 5.x.x或Unity 2017.x.x 以上.
 
 1. 下载Appluck UnityPlugin
