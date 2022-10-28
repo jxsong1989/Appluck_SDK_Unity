@@ -8,14 +8,10 @@ Appluck Android Unity 插件集成说明
 
 * Unity 5.x.x或Unity 2017.x.x 以上.
 
-
-
 1. 下载Appluck UnityPlugin
 --------
 
  [AppLuck_UnityPlugin_v1.0.0][alup]
-
-
 
 2. 导入unitypackage
 --------
@@ -23,8 +19,6 @@ Appluck Android Unity 插件集成说明
 1. 在unity中, 选择 Assets > Import Package > Custom Package…
 2. 选择下载的AppLuck_UnityPlugin_v1.0.0.unitypackage
 3. 点击导入按钮
-
-
 
 3. 配置依赖
 --------
@@ -50,8 +44,6 @@ Appluck Android Unity 插件集成说明
 
    * 将libs.zip解压，内容全部放入 Assets/Plugins/Android
 
-
-
 启用Jetifier和AndroidX,在gradleTemplate.properties中添加以下内容:
 
   ```
@@ -59,14 +51,12 @@ android.useAndroidX=true
 android.enableJetifier=true 
   ```
 
-
-
 4. 开始集成
 --------
 
 ### 4.1 初始化SDK
 
-1. 填充初始化成功回调.
+4.1.1 填充初始化成功回调.
 
   ```c#
 AppLuckEvents.onInitSuccessEvent += () =>{
@@ -75,15 +65,13 @@ AppLuckEvents.onInitSuccessEvent += () =>{
 }
   ```
 
-2. 初始化
+4.1.2 初始化
 
   ```c#
 //gaid - Google Advertising ID 获取方式可参考文档最后的其他支持
 //placementId - 广告位ID 插件会自动对该位置做预加载，如产品中有多个广告位建议传入最重要即预期曝光最多的广告位ID。生产环境的placementId请与运营人员联系获取。
 AppLuck.instance.init(gaid, placementId);
   ```
-
-
 
 ### 4.2 设置广告位入口
 
@@ -93,8 +81,6 @@ Appluck支持两种方式的广告位入口
   - 只需传入入口的宽高及位置即可展示，Appluck将会对素材做系统推荐并根据点击率实时优化
 - 自行设置入口 - 适合对入口有特殊要求，或在某些场景希望直接打开互动广告的需求
   - 希望打开互动广告时，调用我们提供的方法打开Appluck的活动页面。
-
-
 
 #### 4.2.1 使用Appluck封装的入口
 
@@ -150,10 +136,6 @@ AppLuckEvents.onInitSuccessEvent += () =>{
     placement.gameObject.SetActive(true);
 }
 ```
-
-
-
-
 
 5. 其他支持
 --------
