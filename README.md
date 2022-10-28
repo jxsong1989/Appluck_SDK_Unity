@@ -7,19 +7,15 @@ Appluck Android Unity 插件集成说明
 --------
 * Unity 5.x.x或Unity 2017.x.x 以上.
 
-1. 下载Appluck UnityPlugin
---------
+## 1.下载Appluck UnityPlugin
  [AppLuck_UnityPlugin_v1.0.0][alup]
 
-2. 导入unitypackage
---------
+## 2. 导入unitypackage
 1. 在unity中, 选择 Assets > Import Package > Custom Package…
 2. 选择下载的AppLuck_UnityPlugin_v1.0.0.unitypackage
 3. 点击导入按钮
 
-3. 配置依赖
---------
-
+## 3. 配置依赖
 可通过以下两种方式引入，任选其一
 
 * 通过gradle引入
@@ -48,8 +44,7 @@ android.useAndroidX=true
 android.enableJetifier=true 
   ```
 
-4. 开始集成
---------
+## 4. 开始集成
 
 ### 4.1 初始化SDK
 
@@ -134,8 +129,7 @@ AppLuckEvents.onInitSuccessEvent += () =>{
 }
 ```
 
-5. 其他支持
---------
+## 5. 其他支持
 
 * 获取gaid
 
