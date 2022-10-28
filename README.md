@@ -96,3 +96,8 @@ AppLuckEvents.onInitSuccessEvent += () =>{
     placement.gameObject.SetActive(true);
 }
 ```
+
+
+
+
+ [alup]: https://github.com/jxsong1989/appluck-intergration-guide-uniwebview-unity/releases/tag/v1
