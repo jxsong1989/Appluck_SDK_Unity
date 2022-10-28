@@ -38,7 +38,6 @@ Appluck Android Unity 插件集成说明
    * 将libs.zip解压，内容全部放入 Assets/Plugins/Android
 
 启用Jetifier和AndroidX,在gradleTemplate.properties中添加以下内容:
-
   ```
   android.useAndroidX=true
   android.enableJetifier=true 
