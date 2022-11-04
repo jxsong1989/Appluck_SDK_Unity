@@ -75,17 +75,6 @@ public class MainCtrl : MonoBehaviour
 
     }
 
-    private void OnApplicationFocus(bool focus)
-    {
-        //失去焦点调用loadPlacement可实现切换icon，无切换需求可忽略
-        if (!focus)
-        {
-            AppLuck.instance.loadPlacement(placementId, "icon", 200, 200);
-
-            AppLuck.instance.loadPlacement("q842c2e0a9a1e19c3", "icon", 200, 200);
-        }
-    }
-
     private string GetAdvertisingId()
     {
         AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
