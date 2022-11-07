@@ -26,6 +26,8 @@ public class MainCtrl : MonoBehaviour
         act_join_btn.gameObject.SetActive(false);
         ad_click_btn = GameObject.Find("ad_click_btn").GetComponent<Button>();
         ad_click_btn.gameObject.SetActive(false);
+        gaid = GetAdvertisingId();
+        Debug.LogError("GetAdvertisingId  " + gaid);
 
         //初始化成功回调
         AppLuckEvents.onInitSuccessEvent += () =>
@@ -45,10 +47,8 @@ public class MainCtrl : MonoBehaviour
 
             };
             AppLuck.instance.loadPlacement(placementId, "icon", 200, 200);
-            Debug.LogError("AppLuck111  unity1");
 
             AppLuck.instance.loadPlacement("q842c2e0a9a1e19c3", "icon", 200, 200);
-            Debug.LogError("AppLuck111  unity2");
         };
 
 
@@ -75,14 +75,21 @@ public class MainCtrl : MonoBehaviour
 
     }
 
-    private void OnApplicationFocus(bool focus)
+    private string GetAdvertisingId()
     {
-        //失去焦点调用loadPlacement可实现切换icon，无切换需求可忽略
-        if (!focus)
+        AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        AndroidJavaObject jo = jc.GetStatic<AndroidJavaObject>("currentActivity");
+        AndroidJavaClass jc2 = new AndroidJavaClass("com.google.android.gms.ads.identifier.AdvertisingIdClient");
+        AndroidJavaObject jo2 = jc2.CallStatic<AndroidJavaObject>("getAdvertisingIdInfo", jo);
+        if (jo2 != null)
         {
-            AppLuck.instance.loadPlacement(placementId, "icon", 200, 200);
-
-            AppLuck.instance.loadPlacement("q842c2e0a9a1e19c3", "icon", 200, 200);
+            //获取广告id：
+            string advertisingId = jo2.Call<string>("getId");
+            if (!string.IsNullOrEmpty(advertisingId))
+            {
+                return advertisingId;
+            }
         }
+        return "";
     }
 }
