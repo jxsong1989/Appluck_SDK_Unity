@@ -31,6 +31,8 @@ Unity 5.x.x或Unity 2017.x.x 以上.
   implementation 'com.alibaba:fastjson:1.1.72.android'
   //图片加载缓存
   implementation 'com.github.bumptech.glide:glide:4.14.2'
+  //gaid
+  implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
   ```
 
  * 手动引入
@@ -127,33 +129,5 @@ AppLuckEvents.onInitSuccessEvent += () =>{
     placement.gameObject.SetActive(true);
 }
 ```
-
-## 5. 其他支持
-
-* 获取gaid
-
-  ```groovy
-  implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1' 
-  ```
-
-  ```c#
-  string GetGaid()
-    {
-        AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        AndroidJavaObject jo = jc.GetStatic<AndroidJavaObject>("currentActivity");
-        AndroidJavaClass jc2 = new AndroidJavaClass("com.google.android.gms.ads.identifier.AdvertisingIdClient");
-        AndroidJavaObject jo2 = jc2.CallStatic<AndroidJavaObject>("getAdvertisingIdInfo", jo);
-        if (jo2 != null)
-        {
-            //获取广告id：
-            string advertisingId = jo2.Call<string>("getId");
-            if (!string.IsNullOrEmpty(advertisingId))
-            {
-                return advertisingId;
-            }
-        }
-        return "";
-    }
-  ```
 
 [alup]: https://github.com/jxsong1989/appluck-intergration-guide-uniwebview-unity/releases/tag/v1
