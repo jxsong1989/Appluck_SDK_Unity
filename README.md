@@ -8,7 +8,7 @@ Appluck Android Unity 插件集成说明
 Unity 5.x.x或Unity 2017.x.x 以上.
 
 ## 1.下载Appluck UnityPlugin
- [AppLuck_UnityPlugin_v1.0.0][alup]
+ [AppLuck_UnityPlugin_v1.0.1][alup]
 
 ## 2. 导入unitypackage
 1. 在unity中, 选择 Assets > Import Package > Custom Package…
@@ -129,4 +129,4 @@ AppLuckEvents.onInitSuccessEvent += () =>{
 }
 ```
 
-[alup]: https://github.com/jxsong1989/appluck-intergration-guide-uniwebview-unity/releases/tag/v1
+[alup]: https://github.com/jxsong1989/appluck-intergration-guide-uniwebview-unity/releases/tag/v1.0.1
