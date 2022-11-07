@@ -10,8 +10,7 @@ public class MainCtrl : MonoBehaviour
 
     //广告位id，商务获取
     private string placementId = "q842c2e079a1b32c8";
-    //gaid，通过google sdk获取
-    private string gaid = "";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +25,6 @@ public class MainCtrl : MonoBehaviour
         act_join_btn.gameObject.SetActive(false);
         ad_click_btn = GameObject.Find("ad_click_btn").GetComponent<Button>();
         ad_click_btn.gameObject.SetActive(false);
-        gaid = GetAdvertisingId();
-        Debug.LogError("GetAdvertisingId  " + gaid);
 
         //初始化成功回调
         AppLuckEvents.onInitSuccessEvent += () =>
@@ -66,30 +63,12 @@ public class MainCtrl : MonoBehaviour
             AppLuck.instance.openInteractiveAds(placementId);
         });
         //预加载webview初始化
-        AppLuck.instance.init(gaid, placementId);
+        AppLuck.instance.init(placementId);
     }
 
     // Update is called once per frame
     void Update()
     {
 
-    }
-
-    private string GetAdvertisingId()
-    {
-        AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        AndroidJavaObject jo = jc.GetStatic<AndroidJavaObject>("currentActivity");
-        AndroidJavaClass jc2 = new AndroidJavaClass("com.google.android.gms.ads.identifier.AdvertisingIdClient");
-        AndroidJavaObject jo2 = jc2.CallStatic<AndroidJavaObject>("getAdvertisingIdInfo", jo);
-        if (jo2 != null)
-        {
-            //获取广告id：
-            string advertisingId = jo2.Call<string>("getId");
-            if (!string.IsNullOrEmpty(advertisingId))
-            {
-                return advertisingId;
-            }
-        }
-        return "";
     }
 }

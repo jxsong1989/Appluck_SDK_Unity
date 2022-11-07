@@ -65,4 +65,35 @@ public class AppLuckEvents : MonoBehaviour
             _onPlacementLoadSuccessEvent(sk);
         }
     }
+
+    public static event Action _onPlacementCloseEvent;
+    public static event Action onPlacementCloseEvent
+    {
+        add
+        {
+            if (_onPlacementCloseEvent == null || !_onPlacementCloseEvent.GetInvocationList().Contains(value))
+            {
+                _onPlacementCloseEvent += value;
+            }
+        }
+        remove
+        {
+            if (_onPlacementCloseEvent.GetInvocationList().Contains(value))
+            {
+                _onPlacementCloseEvent -= value;
+            }
+        }
+    }
+
+    public void placementClose()
+    {
+        if (_onPlacementCloseEvent != null)
+        {
+            _onPlacementCloseEvent();
+            foreach (Action act in _onPlacementCloseEvent.GetInvocationList())
+            {
+                _onPlacementCloseEvent -= act;
+            }
+        }
+    }
 }

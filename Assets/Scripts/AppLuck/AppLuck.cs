@@ -29,18 +29,14 @@ public class AppLuck
         }
     }
 
-    public void init(string gaid, string preloadSk)
+    public void init(string preloadSk)
     {
         if (preloadSk == null || preloadSk.Length <= 0)
         {
             Debug.LogError("preloadSk is empty");
             return;
         }
-        if (gaid == null)
-        {
-            gaid = "";
-        }
-        appLuckSdk.CallStatic("init", preloadSk, gaid);
+        appLuckSdk.CallStatic("init", preloadSk);
     }
 
     public void loadPlacement(string sk, string creativeType, int width, int height)
