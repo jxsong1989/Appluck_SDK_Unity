@@ -63,6 +63,7 @@ AppLuckEvents.onInitSuccessEvent += () =>{
   ```c#
 //placementId - 广告位ID 插件会自动对该位置做预加载，如产品中有多个广告位建议传入最重要即预期曝光最多的广告位ID。生产环境的placementId请与运营人员联系获取。
 AppLuck.instance.init(placementId);
+
 //获取sdk初始化状态
 if (AppLuck.instance.isSDKInit())
 {
