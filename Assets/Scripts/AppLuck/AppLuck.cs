@@ -10,6 +10,7 @@ public class AppLuck
     private static AppLuck _appLuck;
 
     private static AndroidJavaObject appLuckSdk;
+
     private AppLuck()
     {
         appLuckSdk = new AndroidJavaObject("com.appluck.webview_library.AppLuck");
@@ -62,6 +63,15 @@ public class AppLuck
     public void openInteractiveAds(string sk)
     {
         appLuckSdk.CallStatic("openInteractiveAds", sk);
+    }
+
+    public bool isPlacementReady(string sk)
+    {
+        return appLuckSdk.CallStatic<bool>("isPlacementReady", sk);
+    }
+
+    public bool isSDKInit() {
+        return appLuckSdk.CallStatic<bool>("isSDKInit");
     }
 }
 
