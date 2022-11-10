@@ -87,12 +87,11 @@ Appluck支持两种方式的广告位入口
   ```c#
 //loadedPlacementId - 加载成功的placementId
 AppLuckEvents.onPlacementLoadSuccessEvent += (loadedPlacementId) =>{
-  //placement 加载成功，showPlacement素材
-  if (loadedPlacementId == placementId)
-  {
-      //将placement入口素材显示在指定坐标
-      AppLuck.instance.showInteractiveEntrance(loadedPlacementId, Screen.height - 800, Screen.width - 600);
-  }
+	//placement 加载成功，showPlacement素材
+	if (loadedPlacementId == placementId){
+		//将placement入口素材显示在指定坐标
+		AppLuck.instance.showInteractiveEntrance(loadedPlacementId, Screen.height - 800, Screen.width - 600);
+	}
 }
   ```
 
@@ -107,7 +106,7 @@ AppLuck.instance.loadPlacement(placementId, "icon", 200, 200);
 
 //获取placement加载状态
 if (AppLuck.instance.isPlacementReady(placementId)) { 
-  AppLuck.instance.showInteractiveEntrance(loadedPlacementId, Screen.height - 800, Screen.width - 600);
+	AppLuck.instance.showInteractiveEntrance(loadedPlacementId, Screen.height - 800, Screen.width - 600);
 }
   ```
 
@@ -128,15 +127,14 @@ AppLuck.instance.openInteractiveAds(请传入placementId);
 placement.gameObject.SetActive(false);
 
 //placement绑定点击事件
-placement.onClick.AddListener(() =>
-{
-    //唤起webview并加载活动，请传入placementId
-    AppLuck.instance.openInteractiveAds(请传入placementId);
+placement.onClick.AddListener(() =>{
+	//唤起webview并加载活动，请传入placementId
+	AppLuck.instance.openInteractiveAds(请传入placementId);
 });
 
 //在SDK初始化成功的回调中显示placement
 AppLuckEvents.onInitSuccessEvent += () =>{
-    placement.gameObject.SetActive(true);
+	placement.gameObject.SetActive(true);
 }
 ```
 
