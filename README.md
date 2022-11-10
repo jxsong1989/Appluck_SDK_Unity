@@ -42,7 +42,7 @@ Unity 5.x.x或Unity 2017.x.x 以上.
 启用Jetifier和AndroidX,在gradleTemplate.properties中添加以下内容:
   ```
   android.useAndroidX=true
-  android.enableJetifier=true 
+  android.enableJetifier=true
   ```
 
 ## 4. 开始集成
