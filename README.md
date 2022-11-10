@@ -114,7 +114,7 @@ if (AppLuck.instance.isPlacementReady(placementId)) {
 
 #### 4.2.2 自行设置入口
 
-- 直接打开互动广告的场景请直接调用
+- 直接打开互动广告的场景请直接调用，不需要调用isPlacementReady函数判断，只要SDK init成功即可
 
 ```c#
 AppLuck.instance.openInteractiveAds(请传入placementId);
@@ -132,7 +132,7 @@ placement.onClick.AddListener(() =>{
 	AppLuck.instance.openInteractiveAds(请传入placementId);
 });
 
-//在SDK初始化成功的回调中显示placement
+//在SDK初始化成功的回调中显示placement 或自行使用AppLuck.instance.isSDKInit()判断是否init成功
 AppLuckEvents.onInitSuccessEvent += () =>{
 	placement.gameObject.SetActive(true);
 }
