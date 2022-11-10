@@ -120,7 +120,7 @@ if (AppLuck.instance.isPlacementReady(placementId)) {
 AppLuck.instance.openInteractiveAds(请传入placementId);
 ```
 
-- 自行设置入口，等待Appluck预加载完成再展示
+- 参考如下使用方法
 
 ```c#
 //游戏初始化时默认隐藏入口素材游戏对象placement
