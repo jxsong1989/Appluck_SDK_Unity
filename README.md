@@ -138,4 +138,15 @@ AppLuckEvents.onInitSuccessEvent += () =>{
 }
 ```
 
+### 4.3 其他事件
+```c#
+//用户互动回调
+//interaction 
+//	INTERACTIVE_PLAY 活动参与
+//	INTERACTIVE_CLICK 广告点击
+AppLuckEvents.onUserInteractionEvent += (placementId, interaction) =>{
+	toast(placementId + "  " + interaction);
+};
+```
+
 [alup]: https://github.com/jxsong1989/appluck-intergration-guide-uniwebview-unity/releases/tag/v1.0.1
