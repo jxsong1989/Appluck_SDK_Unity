@@ -136,7 +136,7 @@ AppLuckEvents.onInitSuccessEvent += () =>{
 //	INTERACTIVE_PLAY 活动参与
 //	INTERACTIVE_CLICK 广告点击
 AppLuckEvents.onUserInteractionEvent += (placementId, interaction) =>{
-	toast(placementId + "  " + interaction);
+	// toast(placementId + "  " + interaction);
 };
 ```
 
