@@ -140,7 +140,7 @@ AppLuckEvents.onInitSuccessEvent += () =>{
 
 ### 4.3 其他事件
 ```c#
-//用户互动回调
+//用户互动回调 - 此事件非全量开发，若有需求请提前与Appluck对接人员沟通
 //interaction 
 //	INTERACTIVE_PLAY 活动参与
 //	INTERACTIVE_CLICK 广告点击
