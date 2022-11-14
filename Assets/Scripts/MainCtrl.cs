@@ -29,6 +29,7 @@ public class MainCtrl : MonoBehaviour
         //初始化成功回调
         AppLuckEvents.onInitSuccessEvent += () =>
         {
+            toast("AppLuck Init Success.");
             //预加载成功后显示按钮
             preload_webView_btn.gameObject.SetActive(true);
             AppLuckEvents.onPlacementLoadSuccessEvent += (sk) =>
@@ -41,7 +42,10 @@ public class MainCtrl : MonoBehaviour
                 {
                     AppLuck.instance.showInteractiveEntrance(sk, Screen.height - 800, Screen.width - 300);
                 }
-
+            };
+            AppLuckEvents.onUserInteractionEvent += (placementId, interaction) =>
+            {
+                toast(placementId + "  " + interaction);
             };
             AppLuck.instance.loadPlacement(placementId, "icon", 200, 200);
 
@@ -70,5 +74,19 @@ public class MainCtrl : MonoBehaviour
     void Update()
     {
 
+    }
+
+    void toast(string msg)
+    {
+        AndroidJavaClass UnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        AndroidJavaObject activity = UnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+        AndroidJavaClass Toast = new AndroidJavaClass("android.widget.Toast");
+        AndroidJavaObject context = activity.Call<AndroidJavaObject>("getApplicationContext");
+        activity.Call("runOnUiThread", new AndroidJavaRunnable(() =>
+        {
+            AndroidJavaObject javaString = new AndroidJavaObject("java.lang.String", msg);
+            Toast.CallStatic<AndroidJavaObject>("makeText", context, javaString, Toast.GetStatic<int>("LENGTH_SHORT")).Call("show");
+        }
+        ));
     }
 }

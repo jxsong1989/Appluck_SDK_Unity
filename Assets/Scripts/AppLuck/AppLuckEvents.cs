@@ -9,8 +9,8 @@ public class AppLuckEvents : MonoBehaviour
         gameObject.name = "AppLuckEvents";
         DontDestroyOnLoad(this);
     }
-    private static event Action _onInitSuccessEvent;
 
+    private static event Action _onInitSuccessEvent;
     public static event Action onInitSuccessEvent
     {
         add
@@ -35,6 +35,34 @@ public class AppLuckEvents : MonoBehaviour
         if (_onInitSuccessEvent != null)
         {
             _onInitSuccessEvent();
+        }
+    }
+
+    private static event Action _onInitFailedEvent;
+    public static event Action onInitFailedEvent
+    {
+        add
+        {
+            if (_onInitFailedEvent == null || !_onInitFailedEvent.GetInvocationList().Contains(value))
+            {
+                _onInitFailedEvent += value;
+            }
+        }
+
+        remove
+        {
+            if (_onInitFailedEvent.GetInvocationList().Contains(value))
+            {
+                _onInitFailedEvent -= value;
+            }
+        }
+    }
+
+    public void onInitFailed()
+    {
+        if (_onInitFailedEvent != null)
+        {
+            _onInitFailedEvent();
         }
     }
 
@@ -66,7 +94,7 @@ public class AppLuckEvents : MonoBehaviour
         }
     }
 
-    public static event Action _onPlacementCloseEvent;
+    private static event Action _onPlacementCloseEvent;
     public static event Action onPlacementCloseEvent
     {
         add
@@ -94,6 +122,35 @@ public class AppLuckEvents : MonoBehaviour
             {
                 _onPlacementCloseEvent -= act;
             }
+        }
+    }
+
+    private static event Action<string, string> _onUserInteractionEvent;
+    public static event Action<string, string> onUserInteractionEvent
+    {
+        add
+        {
+            if (_onUserInteractionEvent == null || !_onUserInteractionEvent.GetInvocationList().Contains(value))
+            {
+                _onUserInteractionEvent += value;
+            }
+        }
+        remove
+        {
+            if (_onUserInteractionEvent.GetInvocationList().Contains(value))
+            {
+                _onUserInteractionEvent -= value;
+            }
+        }
+    }
+
+    public void userInteraction(string msg)
+    {
+        Debug.LogError("userInteraction unity : " + msg);
+        if (_onUserInteractionEvent != null)
+        {
+            string[] s = msg.Split(':');
+            _onUserInteractionEvent(s[0], s[1]);
         }
     }
 }
