@@ -42,7 +42,7 @@ Unity 5.x.x或Unity 2017.x.x 以上.
 启用Jetifier和AndroidX,在gradleTemplate.properties中添加以下内容:
   ```
   android.useAndroidX=true
-  android.enableJetifier=true
+  android.enableJetifier=true 
   ```
 
 ## 4. 开始集成
@@ -63,12 +63,6 @@ AppLuckEvents.onInitSuccessEvent += () =>{
   ```c#
 //placementId - 广告位ID 插件会自动对该位置做预加载，如产品中有多个广告位建议传入最重要即预期曝光最多的广告位ID。生产环境的placementId请与运营人员联系获取。
 AppLuck.instance.init(placementId);
-
-//获取sdk初始化状态
-if (AppLuck.instance.isSDKInit())
-{
-    Debug.Log("sdk init success.");
-}
   ```
 
 ### 4.2 设置广告位入口
@@ -87,11 +81,12 @@ Appluck支持两种方式的广告位入口
   ```c#
 //loadedPlacementId - 加载成功的placementId
 AppLuckEvents.onPlacementLoadSuccessEvent += (loadedPlacementId) =>{
-	//placement 加载成功，showPlacement素材
-	if (loadedPlacementId == placementId){
-		//将placement入口素材显示在指定坐标
-		AppLuck.instance.showInteractiveEntrance(loadedPlacementId, Screen.height - 800, Screen.width - 600);
-	}
+  //placement 加载成功，showPlacement素材
+  if (loadedPlacementId == placementId)
+  {
+      //将placement入口素材显示在指定坐标
+      AppLuck.instance.showInteractiveEntrance(loadedPlacementId, Screen.height - 800, Screen.width - 600);
+  }
 }
   ```
 
@@ -103,39 +98,46 @@ AppLuckEvents.onPlacementLoadSuccessEvent += (loadedPlacementId) =>{
 //width - 入口位置的素材宽度
 //height - 入口位置的素材高度
 AppLuck.instance.loadPlacement(placementId, "icon", 200, 200);
-
-//获取placement加载状态
-if (AppLuck.instance.isPlacementReady(placementId)) { 
-	AppLuck.instance.showInteractiveEntrance(loadedPlacementId, Screen.height - 800, Screen.width - 600);
-}
   ```
 
 
 
 #### 4.2.2 自行设置入口
 
-- 直接打开互动广告的场景请直接调用，不需要调用isPlacementReady函数判断，只要SDK init成功即可
+- 直接打开互动广告的场景请直接调用
 
 ```c#
 AppLuck.instance.openInteractiveAds(请传入placementId);
 ```
 
-- 参考如下使用方法
+- 自行设置入口，等待Appluck预加载完成再展示
 
 ```c#
 //游戏初始化时默认隐藏入口素材游戏对象placement
 placement.gameObject.SetActive(false);
 
 //placement绑定点击事件
-placement.onClick.AddListener(() =>{
-	//唤起webview并加载活动，请传入placementId
-	AppLuck.instance.openInteractiveAds(请传入placementId);
+placement.onClick.AddListener(() =>
+{
+    //唤起webview并加载活动，请传入placementId
+    AppLuck.instance.openInteractiveAds(请传入placementId);
 });
 
-//在SDK初始化成功的回调中显示placement 或自行使用AppLuck.instance.isSDKInit()判断是否init成功
+//在SDK初始化成功的回调中显示placement
 AppLuckEvents.onInitSuccessEvent += () =>{
-	placement.gameObject.SetActive(true);
+    placement.gameObject.SetActive(true);
 }
+```
+
+### 4.3 其他事件
+```c#
+//用户互动回调 - 此事件非全量开放，若有需求请提前与Appluck对接人员沟通
+//interaction 
+//	INTERACTIVE_PLAY 活动参与
+//	INTERACTIVE_CLICK 广告点击
+AppLuckEvents.onUserInteractionEvent += (placementId, interaction) =>{
+	// toast(placementId + "  " + interaction);
+};
 ```
 
 [alup]: https://github.com/jxsong1989/appluck-intergration-guide-uniwebview-unity/releases/tag/v1.0.1
