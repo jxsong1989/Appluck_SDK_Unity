@@ -120,7 +120,10 @@ placement.gameObject.SetActive(false);
 placement.onClick.AddListener(() =>
 {
     //唤起webview并加载活动，请传入placementId
-    //mode 0:默认;1:插屏;2:激励;
+    //mode 
+    //-- 0.默认模式: 适合固定入口场景如浮标banner等，用户可以自由关闭互动广告界面。
+    //-- 1.插屏模式: 适合插屏场景，用户进入10秒后才可关闭。
+    //-- 2.激励模式: 适合激励场景，用户完成3次活动参与后可关闭互动广告界面，关闭界面时触发激励回调。
     AppLuck.instance.openInteractiveAds(请传入placementId, mode);
 });
 
@@ -132,16 +135,8 @@ AppLuckEvents.onInitSuccessEvent += () =>{
 
 ### 4.3 其他事件
 ```c#
-//用户互动回调 - 此事件非全量开放，若有需求请提前与Appluck对接人员沟通
-//interaction 
-//	INTERACTIVE_PLAY 活动参与
-//	INTERACTIVE_CLICK 广告点击
-AppLuckEvents.onUserInteractionEvent += (placementId, interaction) => {
-	// toast(placementId + "  " + interaction);
-};
-
 //AppLuck 关闭回调
-//status 0:未激励;1:已激励
+//status 0:普通关闭;1:已完成激励任务
 AppLuckEvents.onInteractiveAdsHidden += (placementId, status) => {
 	toast("onInteractiveAdsHidden: " + placementId + ", " + status);
 };
