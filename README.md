@@ -107,7 +107,7 @@ AppLuck.instance.loadPlacement(placementId, "icon", 200, 200);
 - 直接打开互动广告的场景请直接调用
 
 ```c#
-AppLuck.instance.openInteractiveAds(请传入placementId);
+AppLuck.instance.openInteractiveAds(请传入placementId, mode);
 ```
 
 - 自行设置入口，等待Appluck预加载完成再展示
