@@ -121,7 +121,7 @@ placement.onClick.AddListener(() =>
 {
     //唤起webview并加载活动，请传入placementId
     //mode 0:默认;1:插屏;2:激励;
-    AppLuck.instance.openInteractiveAds(请传入placementId,mode);
+    AppLuck.instance.openInteractiveAds(请传入placementId, mode);
 });
 
 //在SDK初始化成功的回调中显示placement
