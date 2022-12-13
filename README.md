@@ -120,7 +120,8 @@ placement.gameObject.SetActive(false);
 placement.onClick.AddListener(() =>
 {
     //唤起webview并加载活动，请传入placementId
-    AppLuck.instance.openInteractiveAds(请传入placementId);
+    //mode 0:默认;1:插屏;2:激励;
+    AppLuck.instance.openInteractiveAds(请传入placementId,mode);
 });
 
 //在SDK初始化成功的回调中显示placement
@@ -135,8 +136,14 @@ AppLuckEvents.onInitSuccessEvent += () =>{
 //interaction 
 //	INTERACTIVE_PLAY 活动参与
 //	INTERACTIVE_CLICK 广告点击
-AppLuckEvents.onUserInteractionEvent += (placementId, interaction) =>{
+AppLuckEvents.onUserInteractionEvent += (placementId, interaction) => {
 	// toast(placementId + "  " + interaction);
+};
+
+//AppLuck 关闭回调
+//status 0:未激励;1:已激励
+AppLuckEvents.onInteractiveAdsHidden += (placementId, status) => {
+	toast("onInteractiveAdsHidden: " + placementId + ", " + status);
 };
 ```
 
