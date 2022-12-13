@@ -60,9 +60,14 @@ public class AppLuck
         appLuckSdk.CallStatic("showInteractiveEntrance", sk, top, left);
     }
 
-    public void openInteractiveAds(string sk)
+    public void openInteractiveAds(string sk, int mode)
     {
-        appLuckSdk.CallStatic("openInteractiveAds", sk);
+        appLuckSdk.CallStatic("openInteractiveAds", sk, mode);
+    }
+
+    public void openUrl(string url, int mode)
+    {
+        appLuckSdk.CallStatic("openUrl", url, mode);
     }
 
     public bool isPlacementReady(string sk)
@@ -70,7 +75,8 @@ public class AppLuck
         return appLuckSdk.CallStatic<bool>("isPlacementReady", sk);
     }
 
-    public bool isSDKInit() {
+    public bool isSDKInit()
+    {
         return appLuckSdk.CallStatic<bool>("isSDKInit");
     }
 }

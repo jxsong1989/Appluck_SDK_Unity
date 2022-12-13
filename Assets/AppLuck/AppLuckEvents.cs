@@ -94,34 +94,62 @@ public class AppLuckEvents : MonoBehaviour
         }
     }
 
-    private static event Action _onPlacementCloseEvent;
-    public static event Action onPlacementCloseEvent
+    private static event Action<string, int> _onInteractiveAdsHiddenEvent;
+    public static event Action<string, int> onInteractiveAdsHidden
     {
         add
         {
-            if (_onPlacementCloseEvent == null || !_onPlacementCloseEvent.GetInvocationList().Contains(value))
+            if (_onInteractiveAdsHiddenEvent == null || !_onInteractiveAdsHiddenEvent.GetInvocationList().Contains(value))
             {
-                _onPlacementCloseEvent += value;
+                _onInteractiveAdsHiddenEvent += value;
             }
         }
         remove
         {
-            if (_onPlacementCloseEvent.GetInvocationList().Contains(value))
+            if (_onInteractiveAdsHiddenEvent.GetInvocationList().Contains(value))
             {
-                _onPlacementCloseEvent -= value;
+                _onInteractiveAdsHiddenEvent -= value;
             }
         }
     }
 
-    public void placementClose()
+    public void interactiveAdsHidden(string msg)
     {
-        if (_onPlacementCloseEvent != null)
+        if (_onInteractiveAdsHiddenEvent != null)
         {
-            _onPlacementCloseEvent();
-            foreach (Action act in _onPlacementCloseEvent.GetInvocationList())
+            string[] ss = msg.Split(':');
+            _onInteractiveAdsHiddenEvent(ss[0], int.Parse(ss[1]));
+            foreach (Action<string, int> act in _onInteractiveAdsHiddenEvent.GetInvocationList())
             {
-                _onPlacementCloseEvent -= act;
+                _onInteractiveAdsHiddenEvent -= act;
             }
+        }
+    }
+
+    private static event Action<string> _onInteractiveAdsDisplayedEvent;
+    public static event Action<string> onInteractiveAdsDisplayed
+    {
+        add
+        {
+            if (_onInteractiveAdsDisplayedEvent == null || !_onInteractiveAdsDisplayedEvent.GetInvocationList().Contains(value))
+            {
+                _onInteractiveAdsDisplayedEvent += value;
+            }
+        }
+        remove
+        {
+            if (_onInteractiveAdsDisplayedEvent.GetInvocationList().Contains(value))
+            {
+                _onInteractiveAdsDisplayedEvent -= value;
+            }
+        }
+    }
+
+    public void interactiveAdsDisplayed(string placementId)
+    {
+        if (_onInteractiveAdsDisplayedEvent != null)
+        {
+            _onInteractiveAdsDisplayedEvent(placementId);
         }
     }
 
