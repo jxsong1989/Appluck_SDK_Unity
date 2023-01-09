@@ -60,14 +60,19 @@ public class AppLuck
         appLuckSdk.CallStatic("showInteractiveEntrance", sk, top, left);
     }
 
-    public void openInteractiveAds(string sk, int mode)
+    public void openInteractiveAds(string sk, int mode, int times)
     {
-        appLuckSdk.CallStatic("openInteractiveAds", sk, mode);
+        appLuckSdk.CallStatic("openInteractiveAds", sk, mode, times);
     }
 
-    public void openUrl(string url, int mode)
+    public void openInteractiveAds(string sk, int mode)
     {
-        appLuckSdk.CallStatic("openUrl", url, mode);
+        appLuckSdk.CallStatic("openInteractiveAds", sk, mode, 1);
+    }
+
+    public void openUrl(string url, int mode, int times)
+    {
+        appLuckSdk.CallStatic("openUrl", url, mode, times);
     }
 
     public bool isPlacementReady(string sk)

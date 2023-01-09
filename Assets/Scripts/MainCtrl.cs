@@ -39,7 +39,7 @@ public class MainCtrl : MonoBehaviour
         open_url_btn = GameObject.Find("open_url_btn").GetComponent<Button>();
         open_url_btn.onClick.AddListener(() =>
         {
-            AppLuck.instance.openUrl("https://aios.soinluck.com/scene?sk=q842c2e079a1b32c8&lzdid={gaid}", 2);
+            AppLuck.instance.openUrl("https://aios.soinluck.com/scene?sk=q842c2e079a1b32c8&lzdid={gaid}", 2, 1);
         });
 
         //初始化成功回调
@@ -91,7 +91,7 @@ public class MainCtrl : MonoBehaviour
                 toast("onInteractiveAdsHidden: " + placementId + ", " + status);
             };
             //唤起webview并加载活动，请传入placementId和gaid
-            AppLuck.instance.openInteractiveAds("q842c2e0a9a1e19c3", 2);
+            AppLuck.instance.openInteractiveAds("q842c2e0a9a1e19c3", 2, 2);
         });
 
         //预加载webview触发按钮点击事件绑定
@@ -103,7 +103,7 @@ public class MainCtrl : MonoBehaviour
                 toast("onInteractiveAdsHidden: " + placementId + ", " + status);
             };
             //唤起预加载webview
-            AppLuck.instance.openInteractiveAds(placementId, 2);
+            AppLuck.instance.openInteractiveAds(placementId, 2, 2);
         });
 
         //预加载webview触发按钮点击事件绑定
