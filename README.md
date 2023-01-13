@@ -8,7 +8,7 @@ Appluck Android Unity 插件集成说明
 Unity 5.x.x或Unity 2017.x.x 以上.
 
 ## 1.下载Appluck UnityPlugin
- [AppLuck_UnityPlugin_v1.0.1][alup]
+ [AppLuck_UnityPlugin_v1.1.0][alup]
 
 ## 2. 导入unitypackage
 1. 在unity中, 选择 Assets > Import Package > Custom Package…
@@ -107,7 +107,7 @@ AppLuck.instance.loadPlacement(placementId, "icon", 200, 200);
 - 直接打开互动广告的场景请直接调用
 
 ```c#
-AppLuck.instance.openInteractiveAds(请传入placementId);
+AppLuck.instance.openInteractiveAds(请传入placementId, mode);
 ```
 
 - 自行设置入口，等待Appluck预加载完成再展示
@@ -120,7 +120,11 @@ placement.gameObject.SetActive(false);
 placement.onClick.AddListener(() =>
 {
     //唤起webview并加载活动，请传入placementId
-    AppLuck.instance.openInteractiveAds(请传入placementId);
+    //mode 
+    //-- 0.默认模式: 适合固定入口场景如浮标banner等，用户可以自由关闭互动广告界面。
+    //-- 1.插屏模式: 适合插屏场景，用户进入10秒后才可关闭。
+    //-- 2.激励模式: 适合激励场景，用户完成3次活动参与后可关闭互动广告界面，关闭界面时触发激励回调。
+    AppLuck.instance.openInteractiveAds(请传入placementId, mode);
 });
 
 //在SDK初始化成功的回调中显示placement
@@ -131,13 +135,11 @@ AppLuckEvents.onInitSuccessEvent += () =>{
 
 ### 4.3 其他事件
 ```c#
-//用户互动回调 - 此事件非全量开放，若有需求请提前与Appluck对接人员沟通
-//interaction 
-//	INTERACTIVE_PLAY 活动参与
-//	INTERACTIVE_CLICK 广告点击
-AppLuckEvents.onUserInteractionEvent += (placementId, interaction) =>{
-	// toast(placementId + "  " + interaction);
+//AppLuck 关闭回调
+//status 0:普通关闭;1:已完成激励任务
+AppLuckEvents.onInteractiveAdsHidden += (placementId, status) => {
+	toast("onInteractiveAdsHidden: " + placementId + ", " + status);
 };
 ```
 
-[alup]: https://github.com/jxsong1989/appluck-intergration-guide-uniwebview-unity/releases/tag/v1.0.1
+[alup]: https://github.com/jxsong1989/appluck-intergration-guide-uniwebview-unity/releases/tag/v1.1.0
