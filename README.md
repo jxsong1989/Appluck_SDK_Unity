@@ -8,7 +8,7 @@ Appluck Android Unity 插件集成说明
 Unity 5.x.x或Unity 2017.x.x 以上.
 
 ## 1.下载Appluck UnityPlugin
- [AppLuck_UnityPlugin_v1.2.0][alup]
+ [AppLuck_UnityPlugin_v1.2.1][alup]
 
 ## 2. 导入unitypackage
 1. 在unity中, 选择 Assets > Import Package > Custom Package…
@@ -76,7 +76,7 @@ Appluck支持两种方式的广告位入口
 
 #### 4.2.1 使用Appluck封装的入口
 
-1. 填充placement加载成功回调
+1. 填充placement加载成功回调，展示placement
 
   ```c#
 //loadedPlacementId - 加载成功的placementId
@@ -100,6 +100,12 @@ AppLuckEvents.onPlacementLoadSuccessEvent += (loadedPlacementId) =>{
 AppLuck.instance.loadPlacement(placementId, "icon", 200, 200);
   ```
 
+3. 隐藏placement
+
+ ```c#
+//placementId - 广告位id
+AppLuck.instance.hideInteractiveEntrance(placementId);
+  ```
 
 
 #### 4.2.2 自行设置入口
@@ -156,4 +162,4 @@ AppLuckEvents.onInteractiveAdsHidden += (placementId, status) => {
 };
 ```
 
-[alup]: https://github.com/jxsong1989/appluck-intergration-guide-uniwebview-unity/releases/tag/v1.2.0
+[alup]: https://github.com/jxsong1989/appluck-intergration-guide-uniwebview-unity/releases/tag/v1.2.1
