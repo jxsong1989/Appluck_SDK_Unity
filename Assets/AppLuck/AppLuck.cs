@@ -60,6 +60,15 @@ public class AppLuck
         appLuckSdk.CallStatic("showInteractiveEntrance", sk, top, left);
     }
 
+    public void hideInteractiveEntrance(string sk) {
+        if (sk == null || sk.Length <= 0)
+        {
+            Debug.LogError("preloadSk is empty");
+            return;
+        }
+        appLuckSdk.CallStatic("hideInteractiveEntrance", sk);
+    }
+
     public void openInteractiveAds(string sk, int mode, int times)
     {
         appLuckSdk.CallStatic("openInteractiveAds", sk, mode, times);

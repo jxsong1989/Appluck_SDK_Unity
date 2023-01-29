@@ -10,6 +10,8 @@ public class MainCtrl : MonoBehaviour
     Button act_join_btn;
     Button ad_click_btn;
     Button open_url_btn;
+    Button placement_hide_btn;
+    Button placement_show_btn;
 
 
     //广告位id，商务获取
@@ -40,6 +42,18 @@ public class MainCtrl : MonoBehaviour
         open_url_btn.onClick.AddListener(() =>
         {
             AppLuck.instance.openUrl("https://aios.soinluck.com/scene?sk=q842c2e079a1b32c8&lzdid={gaid}", 2, 1);
+        });
+
+        placement_hide_btn = GameObject.Find("placement_hide_btn").GetComponent<Button>();
+        placement_hide_btn.onClick.AddListener(() =>
+        {
+            AppLuck.instance.hideInteractiveEntrance(placementId); ;
+        });
+
+        placement_show_btn = GameObject.Find("placement_show_btn").GetComponent<Button>();
+        placement_show_btn.onClick.AddListener(() =>
+        {
+            AppLuck.instance.showInteractiveEntrance(placementId, Screen.height - 800, Screen.width - 300);
         });
 
         //初始化成功回调
