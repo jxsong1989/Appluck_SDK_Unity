@@ -8,11 +8,11 @@ Appluck Android Unity 插件集成说明
 Unity 5.x.x或Unity 2017.x.x 以上.
 
 ## 1.下载Appluck UnityPlugin
- [AppLuck_UnityPlugin_v1.1.0][alup]
+ [AppLuck_UnityPlugin_v1.2.0][alup]
 
 ## 2. 导入unitypackage
 1. 在unity中, 选择 Assets > Import Package > Custom Package…
-2. 选择下载的AppLuck_UnityPlugin_v1.0.0.unitypackage
+2. 选择下载的AppLuck_UnityPlugin_v1.2.0.unitypackage
 3. 点击导入按钮
 
 ## 3. 配置依赖
@@ -107,7 +107,21 @@ AppLuck.instance.loadPlacement(placementId, "icon", 200, 200);
 - 直接打开互动广告的场景请直接调用
 
 ```c#
+//唤起webview并加载活动，请传入placementId
+//mode 
+//-- 0.默认模式: 适合固定入口场景如浮标banner等，用户可以自由关闭互动广告界面。
+//-- 1.插屏模式: 适合插屏场景，用户进入10秒后才可关闭。
+//-- 2.激励模式: 适合激励场景，用户完成1次活动参与后可关闭互动广告界面，关闭界面时触发激励回调。
 AppLuck.instance.openInteractiveAds(请传入placementId, mode);
+
+//唤起webview并加载活动，请传入placementId
+//mode 
+//-- 0.默认模式: 适合固定入口场景如浮标banner等，用户可以自由关闭互动广告界面。
+//-- 1.插屏模式: 适合插屏场景，用户进入10秒后才可关闭。
+//-- 2.激励模式: 适合激励场景，用户完成{times}次活动参与后可关闭互动广告界面，关闭界面时触发激励回调。
+//times
+//-- 当mode为2(激励模式)时用于限制用户需要完成的活动参与次数。
+AppLuck.instance.openInteractiveAds(请传入placementId, mode, times);
 ```
 
 - 自行设置入口，等待Appluck预加载完成再展示
@@ -123,7 +137,7 @@ placement.onClick.AddListener(() =>
     //mode 
     //-- 0.默认模式: 适合固定入口场景如浮标banner等，用户可以自由关闭互动广告界面。
     //-- 1.插屏模式: 适合插屏场景，用户进入10秒后才可关闭。
-    //-- 2.激励模式: 适合激励场景，用户完成3次活动参与后可关闭互动广告界面，关闭界面时触发激励回调。
+    //-- 2.激励模式: 适合激励场景，用户完成1次活动参与后可关闭互动广告界面，关闭界面时触发激励回调。
     AppLuck.instance.openInteractiveAds(请传入placementId, mode);
 });
 
@@ -142,4 +156,4 @@ AppLuckEvents.onInteractiveAdsHidden += (placementId, status) => {
 };
 ```
 
-[alup]: https://github.com/jxsong1989/appluck-intergration-guide-uniwebview-unity/releases/tag/v1.1.0
+[alup]: https://github.com/jxsong1989/appluck-intergration-guide-uniwebview-unity/releases/tag/v1.2.0
