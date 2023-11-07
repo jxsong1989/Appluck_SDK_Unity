@@ -163,4 +163,4 @@ AppLuckEvents.onInteractiveAdsHidden += (placementId, status) => {
 };
 ```
 
-[alup]: https://github.com/jxsong1989/appluck-intergration-guide-uniwebview-unity/releases/tag/v1.2.3
+[alup]: https://github.com/jxsong1989/Appluck_SDK_Unity/releases/tag/v1.2.3
