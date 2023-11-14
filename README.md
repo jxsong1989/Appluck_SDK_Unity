@@ -2,7 +2,7 @@
 
 [中文](https://github.com/jxsong1989/Appluck_SDK_Unity/blob/master/README-CN.md)
 <br/>
-<br/>
+
 [GitHub Repository](https://github.com/jxsong1989/Appluck_SDK_Unity)
 <br/>
 
@@ -97,6 +97,7 @@ AppLuck.instance.loadPlacement(placementId, "icon", 200, 200);
  ```c#
 //placementId - Ad placement id
 AppLuck.instance.hideInteractiveEntrance(placementId);
+```
 
 #### 4.2.2 Set up Entrance Manually
 
@@ -141,6 +142,7 @@ placement.onClick.AddListener(() =>
 AppLuckEvents.onInitSuccessEvent += () =>{
     placement.gameObject.SetActive(true);
 }
+```
 
 ### 4.3 Other Events
 ```c#
