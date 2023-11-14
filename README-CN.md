@@ -1,6 +1,6 @@
 Appluck Android Unity 插件集成说明
 =========
-[English](https://github.com/jxsong1989/Appluck_SDK_Unity/edit/master/README.md)
+[English](https://github.com/jxsong1989/Appluck_SDK_Unity/blob/master/README.md)
 <br/>
 <br/>
 [Github地址](https://github.com/jxsong1989/Appluck_SDK_Unity)
